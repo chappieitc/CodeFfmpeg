@@ -1,0 +1,8 @@
+//3D Side by Side thì cần thay đổi các thông số sau để lách tốt hơn
+//boxblur=1:2 «« Tăng/giảm độ mờ, cao nhất là 9:9
+//colorbalance=rs=0:gs=0.6:bs=0 «« Cân đối lại màu sắc
+//colorchannelmixer=aa=0.8 «« Trộn kênh màu
+//filter_3D.png «« Chỉnh sửa thông số opacity trong file góc Photoshop filter_3D.psd
+
+//Có dùng filter_3D.png
+ffmpeg -y -i "{input}.*" -i "3h.mp4" -i "filter_3D.png" -shortest -af "atempo=1.2,volume=1.6,pan=stereo|c0<c0+0*c1|c1<c0+0*c1,aeval=val(0)|-val(1)" -filter_complex "[0:v]setpts=PTS/1.2,boxblur=1:1,scale=640x720,colorbalance=rs=0:gs=0.6:bs=0,colorchannelmixer=aa=0.8 [SideLeft]; [0:v] setpts=PTS/1.2,boxblur=1:1,scale=640x720,colorbalance=rs=0.6:gs=0:bs=0,colorchannelmixer=aa=0.8 [SideRight]; [1:v][SideLeft] overlay=0:0 [tmp1]; [tmp1][SideRight]overlay=640:0 [tmp2]; [tmp2][2:v]overlay=0:0,setdar=16/9" -vcodec libx264 -pix_fmt yuv420p -r 30 -g 60 -b:v 1400k -profile:v main -level 3.1 -acodec libmp3lame -b:a 128k -ar 44100 -metadata title="" -metadata artist="" -metadata album_artist="" -metadata album="" -metadata date="" -metadata track="" -metadata genre="" -metadata publisher="" -metadata encoded_by="" -metadata copyright="" -metadata composer="" -metadata performer="" -metadata TIT1="" -metadata TIT3="" -metadata disc="" -metadata TKEY="" -metadata TBPM="" -metadata language="eng" -metadata encoder="" -threads 0 -preset superfast "{output}.mp4"

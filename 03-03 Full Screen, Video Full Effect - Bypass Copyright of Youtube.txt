@@ -1,0 +1,14 @@
+//Có change MD5 Hash, Có clear ID3 Tag Metadata, Xuất ra chuẩn MP4
+//atempo=1.15 «« Tăng/giảm tốc độ của âm thanh, hiện tại đang tăng lên 115%
+//volume=1.6 «« Tăng/giảm giảm âm lượng
+//pan=stereo|c0<c0+0*c1|c1<c0+0*c1,aeval=val(0)|-val(1) «« Chỉnh hiệu ứng cho âm thanh, dùng lách bản quyền âm thanh, không dùng thì bỏ đoạn này ra
+//setpts=PTS/1.15 «« Tăng/giảm tốc độ của video, hiện tại đang tăng lên 115%
+//crop=iw/1.2:ih/1.2 «« Tăng/giảm độ Zoom(phóng to), hiện tại đang zoom lên 120%
+//crop=width:height:x:y «« Crop video tùy chỉnh kích thước và vị trí crop
+//boxblur=1:2 «« Tăng/giảm độ mờ, cao nhất là 9:9
+//scale=1280:720 «« Resize video về chuẩn HD 1280x720
+//hflip «« Lật ngược video theo chiều ngang, muốn sử dụng effect này thì thêm vào như sau: hflip,scale=1280:720
+//vflip «« Lật ngược video theo chiều dọc, muốn sử dụng effect này thì thêm vào như sau: vflip,scale=1280:720
+//-b:v 1400k «« Tăng/giảm chất lượng hình ảnh của video
+
+ffmpeg -y -i "{input}.*" -i "filter_HD.png" -af "[0:a]atempo=1.15,volume=1.6,pan=stereo|c0<c0+0*c1|c1<c0+0*c1,aeval=val(0)|-val(1)" -filter_complex "[0:v]setpts=PTS/1.15,crop=iw/1.2:ih/1.2,boxblur=1:2,scale=1280:720 [v1]; [v1][1:v]overlay=0:0,setdar=16/9" -vcodec libx264 -pix_fmt yuv420p -r 30 -g 60 -b:v 1400k -profile:v main -level 3.1 -acodec libmp3lame -b:a 128k -ar 44100 -metadata title="" -metadata artist="" -metadata album_artist="" -metadata album="" -metadata date="" -metadata track="" -metadata genre="" -metadata publisher="" -metadata encoded_by="" -metadata copyright="" -metadata composer="" -metadata performer="" -metadata TIT1="" -metadata TIT3="" -metadata disc="" -metadata TKEY="" -metadata TBPM="" -metadata language="eng" -metadata encoder="" -threads 0 -preset superfast "{output}.mp4"

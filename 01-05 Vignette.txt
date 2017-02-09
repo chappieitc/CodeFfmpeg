@@ -1,0 +1,2 @@
+//vignette=0-10
+ffmpeg -y -i "{input}.*" -filter_complex "vignette=5" "{output}_vignette.*"

@@ -1,0 +1,5 @@
+//zoom 150% to center
+ffmpeg -y -i "{input}.*" -filter_complex "crop=iw/2:ih/2,scale=640:360" "{output}_zoom.*"
+
+//zoom 150% from left top corner
+//ffmpeg -y -i "{input}.*" -filter_complex "crop=iw/2:ih/2:0:0,scale=640:360" "{output}_zoom_lt.*"

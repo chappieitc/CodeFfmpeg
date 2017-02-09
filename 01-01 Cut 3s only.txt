@@ -1,0 +1,4 @@
+﻿ffmpeg -y -ss 00:00:03 -i "{input}.*" -codec copy "{output}_cut.*"
+
+//Cắt một đoạn 30s tính từ giây thứ 3.
+//ffmpeg -y -ss 00:00:03 -i "{input}.*" -to 00:00:30 -codec copy "{output}_cut_30s.*"

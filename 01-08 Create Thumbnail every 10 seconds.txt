@@ -1,0 +1,1 @@
+ffmpeg -y -i "{input}.*" -f image2 -vf "fps=1/10" "{output}_%3d.png"

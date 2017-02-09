@@ -1,0 +1,5 @@
+ffmpeg -y -ss 00:00:03 -i "{input}.mp4" -codec copy "{output}_cut.*"
+
+ffmpeg -y -i "{output}_cut.*" -codec copy -metadata title="" -metadata artist="" -metadata album_artist="" -metadata album="" -metadata date="" -metadata track="" -metadata genre="" -metadata publisher="" -metadata encoded_by="" -metadata copyright="" -metadata composer="" -metadata performer="" -metadata TIT1="" -metadata TIT3="" -metadata disc="" -metadata TKEY="" -metadata TBPM="" -metadata language="eng" -metadata encoder="" -preset superfast "{output}.*"
+
+delete "{output}_cut.*"

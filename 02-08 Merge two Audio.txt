@@ -1,0 +1,1 @@
+﻿ffmpeg -y -i "Noise.mp3" -i "{input}.*" -filter_complex "[0:a][1:a]amix=inputs=2:duration=shortest" -vcodec libx264 -pix_fmt yuv420p -r 30 -g 60 -b:v 1400k -profile:v main -level 3.1 -acodec libmp3lame -b:a 128k -ar 44100 -preset superfast "{output}.mp4"

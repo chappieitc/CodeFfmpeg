@@ -1,0 +1,1 @@
+ffmpeg -y -i "{input}.*" -filter_complex "crop=640:360:10:10,scale=320:240" "{output}_crop_resize.*"

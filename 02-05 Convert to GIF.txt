@@ -1,0 +1,2 @@
+﻿//Convert .mp4 to animated gif(uncompressed) with length 30s
+ffmpeg -y -i "{input}.*" -s 320x240 -to 00:00:30 -preset superfast "{output}.gif"

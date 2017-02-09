@@ -1,0 +1,5 @@
+//Overlay Logo
+ffmpeg -y -i "{input}.*" -i "Logo.png" -filter_complex "[0:v][1:v]overlay=10:10" "{output}_overlay_logo.*"
+
+//Overlay Filter
+//ffmpeg -y -i "{input}.*" -i "Filter.png" -filter_complex "[0:v][1:v]overlay=0:0" "{output}_overlay_filter.*"

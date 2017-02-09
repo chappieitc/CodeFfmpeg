@@ -1,0 +1,2 @@
+//Speed up to 170% = 1.7
+ffmpeg -y -i "{input}.*" -filter_complex "setpts=PTS/1.7; atempo=1.7" "{output}_speedup.*"

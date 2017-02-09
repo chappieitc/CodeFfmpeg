@@ -1,0 +1,2 @@
+//boxblur=9:9
+ffmpeg -y -i "{input}.*" -filter_complex "boxblur=2:5" "{output}_blur.*"

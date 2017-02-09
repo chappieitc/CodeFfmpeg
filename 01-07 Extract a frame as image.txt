@@ -1,0 +1,2 @@
+//Extract a frame at 30s
+ffmpeg -y -i "{input}.*" -ss 00:00:30 -frames:v 1 "{output}_30s.png"

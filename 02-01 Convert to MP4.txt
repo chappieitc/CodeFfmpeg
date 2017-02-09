@@ -1,0 +1,6 @@
+﻿//Encode MP4 đẹp - nhẹ - chuẩn Youtube
+ffmpeg -y -i "{input}.*" -vcodec libx264 -pix_fmt yuv420p -r 30 -g 60 -b:v 1400k -profile:v main -level 3.1 -acodec libmp3lame -b:a 128k -ar 44100 -preset superfast "{output}.mp4"
+
+//Tham khảo thêm về Encode MP4 video cho Youtube
+//https://trac.ffmpeg.org/wiki/Encode/YouTube
+//https://trac.ffmpeg.org/wiki/Encode/H.264
